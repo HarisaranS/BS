@@ -1,10 +1,6 @@
 # BASH SCRIPTING
 
 ```bash
-https://devhints.io/bash
-```
-
-```bash
 #!/bin/bash
 ```
 
@@ -329,9 +325,3 @@ if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] ; then
 fi
 ```
 
-Case Structure
-
-```bash
-case "$variable" in 
-		
-```
