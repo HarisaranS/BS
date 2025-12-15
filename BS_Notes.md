@@ -265,7 +265,7 @@ Life is like a football. The important thing is getting wet
 
 ```
 
-Decision Making 
+## Decision Making
 
 ```bash
 NAME="John"
@@ -299,12 +299,12 @@ Types of numeric comparisons
 
 ```bash
 comparison    Evaluated to true when
-$a -lt $b    $a < $b
-$a -gt $b    $a > $b
-$a -le $b    $a <= $b
-$a -ge $b    $a >= $b
-$a -eq $b    $a is equal to $b
-$a -ne $b    $a is not equal to $b
+$a -lt $b    #$a < $b
+$a -gt $b    #$a > $b
+$a -le $b    #$a <= $b
+$a -ge $b    #$a >= $b
+$a -eq $b    #$a is equal to $b
+$a -ne $b    #$a is not equal to $b
 ```
 
 Types of string comparison
@@ -325,3 +325,216 @@ if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] ; then
 fi
 ```
 
+Case Structure
+
+```bash
+case "$variable" in 
+			"$variable1" )
+				command...
+			;;
+			"$variable2" )
+				command..
+			;;
+esac
+		
+```
+
+Simple case Bash Structure
+
+```bash
+mycase=1
+case $mycase in 
+		1) echo "Selected Bash";;
+		2) echo "Selected Java";;
+		3) echo "Selected Python";;
+esac
+```
+
+## LOOPS
+
+bash for loop
+
+```bash
+for arg in [list] ; do 
+	command..
+done
+```
+
+```bash
+#loop for array number
+NAMES=(Joe Jenny Sara Tony)
+for N in ${NAMES[@]} ; do 
+		exho "My name is $N"
+done
+
+for f in test.sh /etc/localtime; do
+  if [ -e "$f" ]; then  # if exist
+    echo "File is: $f"
+  fi
+done
+```
+
+bash while loop
+
+```bash
+while [ condition ] do 
+		command..
+done
+```
+
+```bash
+COUNT=4
+while [ $COUNT -gt 0 ]; do 
+	echo "Value of count is: $COUNT"
+	COUNT=$((COUNT-1))
+done
+```
+
+bash until loop
+
+```bash
+unitl [ condition ]; do
+	command...
+done
+```
+
+```bash
+COUNT=1
+until [ $COUNT -gt 5 ]; do
+	echo "Value of count is: $COUNT"
+	COUNT=$((COUNT + 1))
+done
+```
+
+break and continue
+
+```bash
+#Print out 0,1,2,3,4
+COUNT=0
+while [ $COUNT -ge 0 ]; do 
+	echo "Value of COUNT is: $COUNT"
+	COUNT=$((COUNT + 1))
+	if [ $COUNT -ge 5 ]; then
+		break
+	fi 
+done
+
+#Print out only odd numbers - 1,3,5,7,9
+COUNT=0
+while [ $COUNT -ge 0 ]; do 
+	echo "Value of COUNT is: $COUNT"
+	COUNT=$((COUNT + 1))
+	if [ $((COUNT % 2)) == 0 ]; then
+		continue;
+	fi 
+done
+
+```
+
+## ARRAY-COMPARISON
+
+```bash
+array=(23 45 34 1 3 2)
+
+#To refer to a particular value (e.g. : to refer 3rd value)
+echo ${array[2]}
+
+#To refer to all the array values
+echo ${array[@]}
+
+#To evaluate the number of elements in an array
+echo ${#array[@]}
+```
+
+```bash
+a=(3 5 8 10 6) 
+b=(6 5 4 12) 
+c=(14 7 5 7)
+	#comparison of first two arrays a and b
+for x in "${a[@]}"; do
+  for y in "${b[@]}"; do
+    [ "$x" == "$y" ] && z+=("$x")
+  done
+done
+
+for i in "${c[@]}"; do
+  for k in "${z[@]}"; do
+    [ "$i" == "$k" ] && j+=("$i")
+  done
+done
+
+echo "${j[@]}" # 5
+```
+
+## SHELL FUNCTION
+
+```bash
+function function_name {
+	command...
+}
+```
+
+```bash
+function function_B {
+	echo "Function B."
+}
+
+funcction function_A {
+	echo "$1"
+}
+
+function adder {
+	echo "$(($1 + $2))"
+}
+
+function_A "Function A."
+function_B
+addr 12 56
+```
+
+## SPECIAL FUNCTION
+
+```bash
+#!/bin/bash
+echo "Scipt Name: $0"
+functuon func {
+		i=0
+		for var in "$@"
+			((i++))
+			echo "The \$${i} argument is: ${var}"
+		done
+		echo "Total count of arguments: $#"
+}
+
+func We are argument
+```
+
+```bash
+func() {
+		echo " ---- \"\$*\""
+		for ARG in "$*"
+		do 
+			echo $ARG   # We are argument
+		done
+		
+		echo "--- \"\$@\""
+    for ARG in "$@"
+    do
+        echo $ARG  # We\nare\nargument\n
+    done
+}
+func We are argument
+```
+
+## BASH TRAP CMD
+
+```bash
+trap "echo Booh!;exit" 2 15 
+echo "it's going to run until you hit Ctrl+Z"
+echo "hit Ctrl+C to be blown away!"
+
+while true        
+do
+    sleep 60       
+done
+```
