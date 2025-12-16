@@ -538,3 +538,81 @@ do
     sleep 60       
 done
 ```
+
+## FILE TESTING
+
+use “-e” to test if the file exist 
+
+```bash
+#!/bin/bash
+filename="sample.md"
+if [ -e "$filename" ]; then
+	echo "$filename exists as a file"
+fi
+```
+
+use “-d” to test if the directory exist 
+
+```bash
+#!/bin/bash 
+dir_name="test_dir"
+if [ -d "$dir_name" ]; then
+	echo "$dir_name exists as a directory"
+fi
+```
+
+use “-r” to test if file has read permission for the user running the script/test
+
+```bash
+#!/bin/bash
+filename="sample.md"
+if [ ! -f "$filename" ]; then 
+	touch "$filename"
+fi
+if [ -r "$filename" -a -w "$filename" -a -x "$filename" ]; then
+	echo "you are allowed to read, write, execute $filename"
+else
+	echo "you are not allowed to read $filename"
+fi
+```
+
+## INPUT PARAMETER PARSING
+
+```bash
+#script.sh -f sample.md -o output.md -v
+while getopts "f:vo" option; do
+	case "$option" in 
+		f) filename=$OPTARG ;;
+		o) output=$OPTARG ;;
+		v) verbose=true ;;
+		*) echo "Invalid option"; exit 1
+	esac
+done
+
+echo "Filename: $filename"
+
+if [ "$verbose" = true ] ; then
+	echo "Verbose mode is ON"
+else 
+	echo "Verbose mode in OFF"
+fi
+```
+
+## PIPELINES
+
+```bash
+command1 | command2
+```
+
+```bash
+ls / | wc -l
+
+ls / | head
+
+ls / | grep
+```
+
+```bash
+#!/bin/bash
+cat /proc/cpuinfo | grep processor | wc -l 
+```
