@@ -26,7 +26,7 @@ This show the full execution path of the shell interpreter
 echo 'Goodbye, World!
 ```
 
-## **Variables**
+## **VARIABLES**
 
 ```bash
 PRICE_PER_APPLE=5
@@ -70,7 +70,7 @@ Thursday
 Wednesday
 ```
 
-## Passing Arguments to the Script
+## PASSING ARGUMENT TO THE SCRIPT
 
 ```bash
 #!/bin/bash
@@ -92,7 +92,7 @@ output
 3
 ```
 
-## Arrays
+## ARRAYS
 
 ```bash
 my_array=(apple banana "Fruit Basket" orange)
@@ -116,7 +116,7 @@ echo ${#my_array[@]}
 echo ${my_array[${#my_array[@]}-1]}
 ```
 
-## Basic Operator
+## BASIC OPERATORS
 
 ```bash
 A=3
@@ -142,7 +142,7 @@ TOTAL=$(($COST_PINEAPPLE + $COST_BANANA + $COST_WATERMELON + $COST_BASKET))
 echo "Total Cost is $TOTAL"
 ```
 
-## Basic String Operation
+## BASIC STRING OPERATION
 
 ```bash
 String="this is a String"
@@ -265,7 +265,7 @@ Life is like a football. The important thing is getting wet
 
 ```
 
-## Decision Making
+## DECISION MAKING
 
 ```bash
 NAME="John"
@@ -615,4 +615,28 @@ ls / | grep
 ```bash
 #!/bin/bash
 cat /proc/cpuinfo | grep processor | wc -l 
+```
+
+## PROCESS SUBSTITUTION
+
+```bash
+sort file1 > sort_file1
+sort file2 > sort_file2
+diff sort_file1 sort_file2
+```
+
+With process substitution you can do it in one line:
+
+```bash
+diff <(sort file1) <(sort file2)
+```
+
+Input 
+
+```bash
+echo "Hello, world!" | tee /tmp/hello.txt
+```
+
+```bash
+echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
 ```
